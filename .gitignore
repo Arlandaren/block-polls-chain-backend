@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 .vscode
 .env
 .exe
-=======
-.env
-.exe
-.vscode
->>>>>>> master
