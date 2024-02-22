@@ -14,7 +14,7 @@ import (
 func main(){
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.TextFormatter{})
-	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0666)
     if err == nil {
         defer file.Close()
 
