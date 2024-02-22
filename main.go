@@ -2,6 +2,8 @@ package main
 
 import (
 	"module/models"
+	"module/models/blockchain"
+	"module/route"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -43,7 +45,14 @@ func main(){
 
 	logger.Info("Initializing database")
 	models.InitDB(Config)
-	
+	logger.Info("Postgres succesfully initialized")
+
+	blockchain.InitDB()
+	logger.Info("Mongo succesfully initialized")
+
+	route.RouteAll(r)
+	logger.Info("Router ready to route")
+
 	logger.Info("Server listening on 8080")
 	r.Run(":8080")
 

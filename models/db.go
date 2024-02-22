@@ -17,7 +17,6 @@ func InitDB(cfg Config){
 		panic(err.Error())
 	}
 	if err := con.AutoMigrate(&User{},&Blockchain{},&Poll{},&Option{},&Vote{}); err!=nil{
-		// logger.Fatalf("Couldnt migrate tables")
 		panic(err)
 	}
 	DB = con
