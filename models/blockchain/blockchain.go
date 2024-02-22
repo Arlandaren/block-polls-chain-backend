@@ -16,8 +16,8 @@ type Block struct{
 	Owner uint64
 }
 
-func calculate_hash(index uint64, prev string, timestamp int,hash string,data string,owner uint64) string{
-	value := strconv.FormatUint(index,10)+ prev +strconv.FormatInt(int64(timestamp),10) + data +strconv.FormatUint(owner,10)
+func calculate_hash(index uint64, prev string, timestamp time.Time,data string,owner uint64) string{
+	value := strconv.FormatUint(index,10)+ prev +strconv.FormatInt((timestamp.UnixNano()),10) + data +strconv.FormatUint(owner,10)
 	hash_value := sha256.New()
 	hash_value.Write([]byte(value))
 	hashed := hash_value.Sum(nil)
@@ -26,5 +26,13 @@ func calculate_hash(index uint64, prev string, timestamp int,hash string,data st
 
 func AddBlock(data string, owner uint64) *Block{
 	lastblock := GetLastBlock()
-	return lastblock
+	var block Block
+	block.Index = lastblock.Index + 1
+	block.Prev_hash = lastblock.Hash
+	block.Timestamp = time.Now()
+	block.Hash = calculate_hash(uint64(block.Index),lastblock.Hash,block.Timestamp,data,owner)
+	block.Data = data
+	block.Owner = owner
+
+	return &block
 }

@@ -9,6 +9,6 @@ import (
 func RouteAll(r * gin.Engine){
 	api := r.Group("api/v1")
 	{
-		api.GET("/create", usecase.CreatePoll)
+		api.POST("/create", usecase.CreatePoll)
 	}
 }
