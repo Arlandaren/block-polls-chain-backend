@@ -435,3 +435,21 @@ time="2024-02-22T21:38:05+09:00" level=info msg="[GIN-debug] [WARNING] You trust
 time="2024-02-22T21:38:05+09:00" level=info msg="Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details."
 time="2024-02-22T21:38:05+09:00" level=info msg="[GIN-debug] Listening and serving HTTP on :8080"
 time="2024-02-22T21:38:10+09:00" level=info msg="[GIN] 2024/02/22 - 21:38:10 | 200 |      1.8737ms |             ::1 | GET      \"/api/v1/create\""
+time="2024-02-22T21:40:22+09:00" level=info msg=Starting
+time="2024-02-22T21:40:22+09:00" level=info msg="[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached."
+time="2024-02-22T21:40:22+09:00" level=info
+time="2024-02-22T21:40:22+09:00" level=info msg="[GIN-debug] [WARNING] Running in \"debug\" mode. Switch to \"release\" mode in production."
+time="2024-02-22T21:40:22+09:00" level=info msg=" - using env:\texport GIN_MODE=release"
+time="2024-02-22T21:40:22+09:00" level=info msg=" - using code:\tgin.SetMode(gin.ReleaseMode)"
+time="2024-02-22T21:40:22+09:00" level=info
+time="2024-02-22T21:40:22+09:00" level=info msg="Loading env variables"
+time="2024-02-22T21:40:22+09:00" level=info msg="Initializing database"
+time="2024-02-22T21:40:22+09:00" level=info msg="Postgres succesfully initialized"
+time="2024-02-22T21:40:22+09:00" level=info msg="Mongo succesfully initialized"
+time="2024-02-22T21:40:22+09:00" level=info msg="[GIN-debug] GET    /api/v1/create            --> module/usecase.CreatePoll (3 handlers)"
+time="2024-02-22T21:40:22+09:00" level=info msg="Router ready to route"
+time="2024-02-22T21:40:22+09:00" level=info msg="Server listening on 8080"
+time="2024-02-22T21:40:22+09:00" level=info msg="[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value."
+time="2024-02-22T21:40:22+09:00" level=info msg="Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details."
+time="2024-02-22T21:40:22+09:00" level=info msg="[GIN-debug] Listening and serving HTTP on :8080"
+time="2024-02-22T21:40:25+09:00" level=info msg="[GIN] 2024/02/22 - 21:40:25 | 200 |      2.8722ms |             ::1 | GET      \"/api/v1/create\""
