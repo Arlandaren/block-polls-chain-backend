@@ -10,18 +10,18 @@ type Config struct{
 }
 
 type User struct {
-    ID uint `gorm:"primaryKey"`
+    ID uint64 `gorm:"primaryKey"`
 }
 
-type Blockchain struct {
-    Index      uint   `gorm:"primaryKey"`
-    PrevHash   string `gorm:"not null"`
-    Timestamp  string `gorm:"not null"`
-    Data       string `gorm:"not null"`
-    Hash       string `gorm:"not null;unique"`
-    OwnerID    uint   `gorm:"not null"`
-    Owner      User   `gorm:"foreignKey:OwnerID"`
-}
+// type Blockchain struct {
+//     Index      uint   `gorm:"primaryKey"`
+//     PrevHash   string `gorm:"not null"`
+//     Timestamp  string `gorm:"not null"`
+//     Data       string `gorm:"not null"`
+//     Hash       string `gorm:"not null;unique"`
+//     OwnerID    uint   `gorm:"not null"`
+//     Owner      User   `gorm:"foreignKey:OwnerID"`
+// }
 
 type Poll struct {
     Block string `gorm:"primaryKey"`
@@ -31,8 +31,7 @@ type Poll struct {
 type Option struct {
     Block     string `gorm:"primaryKey"`
     Text      string `gorm:"not null"`
-    PollBlock string `gorm:"not null"`
-    Poll      Poll   `gorm:"foreignKey:PollBlock"`
+    PollBlock string `gorm:"not null;foreignKey:PollBlock"`
 }
 
 type Vote struct {

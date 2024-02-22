@@ -24,7 +24,7 @@ func calculate_hash(index uint64, prev string, timestamp time.Time,data string,o
 	return hex.EncodeToString(hashed)
 }
 
-func AddBlock(data string, owner uint64) *Block{
+func AddBlock(data string, owner uint64) (*Block, error){
 	lastblock := GetLastBlock()
 	var block Block
 	block.Index = lastblock.Index + 1
@@ -33,6 +33,9 @@ func AddBlock(data string, owner uint64) *Block{
 	block.Hash = calculate_hash(uint64(block.Index),lastblock.Hash,block.Timestamp,data,owner)
 	block.Data = data
 	block.Owner = owner
-
-	return &block
+	err := InsertBlockIntoDb(&block)
+	if err != nil{
+		return nil,err
+	}
+	return &block, nil
 }

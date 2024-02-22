@@ -34,8 +34,21 @@ func GetLastBlock() *Block{
     if err := Collection.FindOne(context.Background(), bson.D{}, opts).Decode(&lastblock); err != nil {
         fmt.Println("error while finding the last block:", err)
     }
-
-    fmt.Println("Last inserted document:", lastblock)
     return &lastblock
+}
 
+func InsertBlockIntoDb(block *Block) error{
+    data := bson.M{
+        "Index": block.Index,
+        "PreviousHash": block.Prev_hash,
+        "Timestamp": block.Timestamp,
+        "Hash": block.Hash,
+        "Data": block.Data,
+        "Owner": block.Owner,
+    }
+    _,err := Collection.InsertOne(context.Background(),data)
+    if err != nil{
+        return err
+    }
+    return nil
 }
