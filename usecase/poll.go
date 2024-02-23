@@ -14,6 +14,12 @@ type poll struct{
 	Owner uint64 `json:"Owner"`
 }
 
+type vote struct{
+	Block string `json:"block"`
+	Poll_block string `json:"poll_block"`
+	Option_block string `json:"option_block"`
+}
+
 func CreatePoll(c *gin.Context){
 	var poll poll
 	if err := c.ShouldBindJSON(&poll); err != nil{
@@ -41,4 +47,12 @@ func FindPoll(c *gin.Context){
 		return
 	}
 	c.JSON(200,gin.H{"status":"success","poll":gin.H{"options":options,"title":poll.Title,"hash":poll.Block}})
+}
+
+func Vote(c *gin.Context){
+	var vote vote
+	if err := c.ShouldBindJSON(&vote); err != nil{
+		c.JSON(400,gin.H{"message":"incorrect body of post method request","status":"error"})
+	}
+	blockchain.AddBlock(fmt.Sprintf("Vote:option:%s, poll:%s",vote.Option_block,vote.Poll_block),)
 }
