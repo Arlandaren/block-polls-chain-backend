@@ -9,7 +9,7 @@ import (
 
 type Block struct{
 	Index uint32
-	Prev_hash string
+	PreviousHash string
 	Timestamp time.Time
 	Hash string
 	Data string
@@ -28,7 +28,7 @@ func AddBlock(data string, owner uint64) (*Block, error){
 	lastblock := GetLastBlock()
 	var block Block
 	block.Index = lastblock.Index + 1
-	block.Prev_hash = lastblock.Hash
+	block.PreviousHash = lastblock.Hash
 	block.Timestamp = time.Now()
 	block.Hash = calculate_hash(uint64(block.Index),lastblock.Hash,block.Timestamp,data,owner)
 	block.Data = data

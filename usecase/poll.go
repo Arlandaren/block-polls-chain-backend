@@ -38,6 +38,7 @@ func FindPoll(c *gin.Context){
 	poll,options,err := models.FindPoll(hash)
 	if err != nil{
 		c.JSON(500,gin.H{"message":fmt.Sprintf("couldnt find poll with hash: %s",hash),"status":"error"})
+		return
 	}
 	c.JSON(200,gin.H{"status":"success","poll":gin.H{"options":options,"title":poll.Title,"hash":poll.Block}})
 }

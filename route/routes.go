@@ -10,11 +10,20 @@ import (
 func RouteAll(r * gin.Engine){
 	api := r.Group("api/v1")
 	{
-		api.POST("/create", usecase.CreatePoll)
-		api.GET("/find_poll",usecase.FindPoll)
+		poll := api.Group("/poll")
+		{
+			poll.POST("/create", usecase.CreatePoll)
+			poll.GET("/find",usecase.FindPoll)
+		}
+		block := api.Group("block")
+		{
+			block.GET("/find", usecase.FindBlock)
+		}
+
 	}
 	admin := r.Group("/admin")
 	{
 		admin.GET("/dropalltables",adminfunc.DropAllTables)
 	}
 }
+
