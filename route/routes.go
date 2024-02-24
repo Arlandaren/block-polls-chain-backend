@@ -14,6 +14,8 @@ func RouteAll(r * gin.Engine){
 		{
 			poll.POST("/create", usecase.CreatePoll)
 			poll.GET("/find",usecase.FindPoll)
+			poll.POST("/vote", usecase.Vote)
+			poll.GET("/stat", usecase.ShowStat)
 		}
 		block := api.Group("block")
 		{

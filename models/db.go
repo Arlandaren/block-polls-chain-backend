@@ -25,21 +25,26 @@ func InitDB(cfg Config){
 	DB = con
 }
 
-func CreatePoll(block string,title string){
+func CreatePoll(block string,title string) error{
 	var poll Poll
 	poll.Block = block
 	poll.Title = title
-	DB.Create(&poll)
+	if err := DB.Create(&poll).Error; err != nil {
+        fmt.Println("error creating option:",err)
+		return err
+    }
+	return nil
 }
-func CreateOption(block string, text string, poll_block string){
+func CreateOption(block string, text string, poll_block string) error{
 	var option Option
 	option.Block = block
 	option.Text = text
 	option.PollBlock = poll_block
-
 	if err := DB.Create(&option).Error; err != nil {
         fmt.Println("error creating option:",err)
+		return err
     }
+	return nil
 }
 
 func FindPoll(hash string) (*Poll,*[]Option,error){
@@ -62,4 +67,29 @@ func DropAllTables() error {
         return err
     }
 	return nil
+}
+func CreateVote(block string, poll_block string, option_block string) error{
+	var vote Vote
+	vote.Block = block
+	vote.PollBlock = poll_block
+	vote.OptionBlock = option_block
+	if err := DB.Create(&vote).Error; err != nil{
+		fmt.Println("error creating vote:",err)
+		return err
+	}
+	return nil
+}
+
+func Stats(poll_block string,option_block string) int64{
+	var count int64
+	var votes Vote
+	if err := DB.Model(&votes).Where("poll_block = ? AND option_block = ?", poll_block, option_block).Count(&count).Error; err!= nil{
+		fmt.Println("error while finding stats", err)
+		return 0
+	}
+	// fmt.Println(poll_block)
+	// fmt.Println(option_block)
+	// DB.Model(&votes).Where("poll_block = ? AND option_block = ?", poll_block, option_block).Count(&count)
+	return count
+
 }

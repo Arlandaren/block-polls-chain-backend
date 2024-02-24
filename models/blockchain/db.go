@@ -44,7 +44,6 @@ func InsertBlockIntoDb(block *Block) error {
 		"Timestamp":    block.Timestamp,
 		"Hash":         block.Hash,
 		"Data":         block.Data,
-		"Owner":        block.Owner,
 	}
 	_, err := Collection.InsertOne(context.Background(), data)
 	if err != nil {
