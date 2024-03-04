@@ -11,6 +11,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+
+
 func main(){
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.TextFormatter{})
@@ -55,5 +57,4 @@ func main(){
 
 	logger.Info("Server listening on 8080")
 	r.Run(":8080")
-
 }
